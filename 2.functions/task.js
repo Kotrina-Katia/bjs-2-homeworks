@@ -24,8 +24,6 @@ function getArrayParams(arr) {
   return { min: min, max: max, avg: avg };
 }
 
-console.log(getArrayParams([-99, 99, 10]))
-
 
 // Задание 2
 function worker(arr) {
@@ -37,11 +35,11 @@ function worker(arr) {
 }
 
 // arrOfArr = []
-function makeWork(arrOfArr, worker) {
+function makeWork(arrOfArr, func) {
   let max = -Infinity;
 
   for (let i = 0; i < arrOfArr.length; i++) {
-    let sum = worker(arrOfArr[i]);
+    let sum = func(arrOfArr[i]);
 
     if (max < sum) {
       max = sum;
@@ -53,11 +51,9 @@ function makeWork(arrOfArr, worker) {
 
 
 // Задание 3
-
 function worker2(arr) {
   let max = -Infinity;
   let min = Infinity;
-  let distance;
 
   for (let i = 0; i < arr.length; i++) {
     if (max < arr[i]) {
@@ -66,10 +62,7 @@ function worker2(arr) {
     if (min > arr[i]) {
       min = arr[i];
     }
-
-    distance = Math.abs(max - min);
   }
 
-  return distance;
+  return Math.abs(max - min);
 }
-

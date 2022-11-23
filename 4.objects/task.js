@@ -35,8 +35,9 @@ Student.prototype.addMarks = function(...mark1) {
 }
 
 // Пункт 5
-Student.prototype.getAverage = function(marks) {
-  this.average = Math.sum(...marks) / marks.length;
+Student.prototype.getAverage = function() {
+  const average = this.marks.reduce((accumulator, mark) => accumulator + mark, 0) / this.marks.length;
+  return average;
 }
 
 // Пункт 6

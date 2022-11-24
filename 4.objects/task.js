@@ -30,14 +30,13 @@ Student.prototype.addMarks = function(...mark1) {
   if(this.marks === undefined) {
     this.marks = [...mark1];
   } else {
-    this.marks.push([...mark1]);
+    this.marks.push(...mark1);
   }
 }
 
 // Пункт 5
 Student.prototype.getAverage = function() {
-  const average = this.marks.reduce((accumulator, mark) => accumulator + mark, 0) / this.marks.length;
-  return average;
+  return this.marks.reduce((accumulator, mark) => accumulator + mark, 0) / this.marks.length;
 }
 
 // Пункт 6

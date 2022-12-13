@@ -75,11 +75,11 @@ class Library{
     }
 
     addBook(book){
-        if (this.books.length === 0){
-            this.books = [book];
-        } else {
-            if (book.state > 30){
-                this.books = this.books.push(book);
+        if (book.state > 30){
+            if (this.books.length === 0){
+                this.books = [book];
+            } else {
+                this.books.push(book);
             }
         }
         return this.books;
@@ -87,7 +87,7 @@ class Library{
 
     findBookBy(type, value){
         for (let i = 0; i < this.books.length; i++){
-            if (this.books[i][type] === value){
+            if (this.books[i].type === value){
                 return this.books[i];
             }
         }
@@ -96,9 +96,9 @@ class Library{
 
     giveBookByName(bookName){
         for (let i =0; i < this.books.length; i++){
-            if (this.books[i][this.name] === bookName){
-                this.books.splice(i, 1);
-                return this.books[i];
+            if (this.books[i].name === bookName){
+                let theBook = this.books.splice(i);
+                return theBook;
             }
         }
         return null;
@@ -106,5 +106,58 @@ class Library{
 }
 
 
+//Задача №3. Журнал успеваемости*
 
+class Student {
+    constructor(name){
+        this.name = name;
+        this.subjects = [];
+    } 
+
+    addMark(mark, subject){
+        if (mark < 1 || mark > 5){
+            console.log("Ошибка, оценка должна быть числом от 1 до 5");
+        } else {
+            if (this.subjects.length === 0){
+                this.subjects = [[mark, subject]];
+            } else {
+                this.subjects.push([mark, subject]);
+            }
+        }
+        return this.subject;
+    }
+
+    getAverageBySubject(subject){
+        if (subject === "biology"){
+            console.log("Несуществующий предмет");
+        }
+
+        for (i = 0; i < this.subjects.length; i++){
+            if (this.subjects[i][1] === subject){
+                let theSubject = [];
+                if (markSubject.length === 0){
+                    theSubject = [this.subjects[i][1]];
+                } else {
+                    theSubject = theSubject.push(this.subjects[i][1]);
+                }
+                return theSubject;   
+            }
+        }
+        let averageBySubject = theSubject.reduce((summaOfMarks, mark) => summaOfMarks + mark, 0) / theSubject.length;  
+        console.log("Средний балл по предмету " + subject + averageBySubject);
+    }
+
+    getAverage(){
+        let average = 0;
+        for (i = 0; i < this.subjects.length; i++){
+            average += this.subjects[i][0];
+        }
+        console.log("Средний балл по всем предметам " + (average / this.subjects.length));
+    }
+
+    exclude(){
+        delete this;
+        console.log("Исключен за попытку подделать оценки");
+    };
+}
   

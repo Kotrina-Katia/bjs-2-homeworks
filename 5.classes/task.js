@@ -155,7 +155,7 @@ class Student {
                     marksOfSubject.push(this.subjects[i][0]);
                 } 
             }
-            summaMarksBySubject = theSubject.reduce((summa, mark) => summa + mark, 0);
+            summaMarksBySubject = marksOfSubject.reduce((summa, mark) => summa + mark, 0);
         }
         console.log("Средний балл по предмету " + subject + (summaMarksBySubject / marksOfSubject.length));
     }

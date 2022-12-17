@@ -170,7 +170,7 @@ class Student {
 
     exclude(reason){
         delete this;
-        console.log(reason);
+        return reason;
     };
 }
  

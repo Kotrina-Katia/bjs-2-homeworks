@@ -147,7 +147,7 @@ class Student {
 
         let marksOfSubject = [];
         let summaMarksBySubject = 0;
-        for (i = 0; i < this.subjects.length; i++){
+        for (let i = 0; i < this.subjects.length; i++){
             if (this.subjects[i][1] === subject){
                 if (marksOfSubject.length === 0){
                     marksOfSubject = [this.subjects[i][0]];
@@ -157,15 +157,15 @@ class Student {
             }
             summaMarksBySubject = marksOfSubject.reduce((summa, mark) => summa + mark, 0);
         }
-        console.log("Средний балл по предмету " + subject + (summaMarksBySubject / marksOfSubject.length));
+        return parseFloat((summaMarksBySubject / marksOfSubject.length).toFixed(1));
     }
 
     getAverage(){
         let summaMarks = 0;
-        for (i = 0; i < this.subjects.length; i++){
+        for (let i = 0; i < this.subjects.length; i++){
             summaMarks += this.subjects[i][0];
         }
-        console.log("Средний балл по всем предметам " + (summaMarks / this.subjects.length));
+        return parseFloat((summaMarks / this.subjects.length).toFixed(1));
     }
 
     exclude(reason){

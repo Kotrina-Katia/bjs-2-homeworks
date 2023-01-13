@@ -37,10 +37,12 @@ class AlarmClock{
 
     start(){
         function checkClock(ring){
-            if (getCurrentFormattedTime() === ring.time) {
+            if (this.getCurrentFormattedTime() === ring.time) {
                 ring.callback();
             }
         }
+
+        checkClock = checkClock.bind(this);
 
         if (this.timerId === undefined) {
             this.timerId = setInterval(() => {

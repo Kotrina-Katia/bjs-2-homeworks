@@ -27,28 +27,27 @@ function cachingDecoratorNew(func) {
 //Задача 2. Debounce-декоратор с моментальным вызовом и подсчётом количества вызовов
 
 function debounceDecoratorNew(func, delay) {
-  wrapper.allCount = [];
+  let timeoutId = null;
 
   function wrapper(...args) {
-    wrapper.allCount.push(args);
-    let timeoutId = null;
+    wrapper.allCount++;
 
-    func.count = [];
-    return function(...args){
-      func.count.push(args);
-      if (timeoutId) {
-        console.log("удалили текущий таймаут");
-        clearTimeout(timeoutId);
-      }
-    
-      console.log("создаём новый таймаут");
-      timeoutId = setTimeout(() => {
-        timeoutId = null;
-        console.log(func(...args));
-        console.log("вызвали колбек");
-      }, delay);
+    if (timeoutId) {
+      clearTimeout(timeoutId);
     }
+
+    if (timeoutId === null) {
+      wrapper.count++;
+      func(...args);
+    }
+
+    timeoutId = setTimeout(() => {
+      wrapper.count++;
+      func(...args);
+    }, delay);
   }
 
+  wrapper.count = 0;
+  wrapper.allCount = 0;
   return wrapper;
 }
